@@ -1,0 +1,12 @@
+<template>
+    <div style="height: 300px;">
+        <lightning-datatable
+        key-field="id"
+        enable-infinite-loading
+        onloadmore={loadMoreData}
+        hide-checkbox-column="true"
+        data={currentOpportunityList}
+        columns={columns}>
+        </lightning-datatable>
+    </div>
+</template>

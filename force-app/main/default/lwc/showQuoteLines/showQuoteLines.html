@@ -1,0 +1,9 @@
+<template>
+    <h2>Quote Lines</h2>
+    <template if:true={quoteLines}>
+        <lightning-datatable data={quoteLines} columns={columns} key-field="Id"></lightning-datatable>
+    </template>
+    <template if:true={error}>
+        {error}
+    </template>
+</template>

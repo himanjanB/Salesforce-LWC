@@ -1,0 +1,27 @@
+<aura:component controller="CustomActionPanelController">
+    <aura:attribute name="Action" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:attribute name="sObjectName" type="String" />
+    <ltng:require styles="{!$Resource.toastMultiline}" />
+    <aura:if isTrue="{!v.Action.actionShow}">
+        <div class="slds-col slds-size_1-of-5" style="height: 130px;" >
+            <div class="slds-align_absolute-center" style="height: 8rem;">
+                <button class="slds-button" onclick="{!c.invokeAction}" id="{!v.Action.actionButton.URL_Redirect__c}">
+                    <lightning:icon class="pointer" content="Click To Proceed" title="Click To Proceed" 
+                    iconName="{!v.Action.actionButton.IconName__c}" size="medium" alternativeText="Icon"/>
+                    <div class="slds-align_absolute-center">
+                        <div style="position: absolute; margin-left: -15px; top: 2.5rem;" onclick="{!c.invokeAction}">
+                            <div class="slds-text-title">{!v.Action.actionButton.Action_Label__c}</div>
+                        </div>
+                    </div>
+                </button>
+
+                <c:modalPopUp isModalOpen="{!v.isModalOpen}" actionLabel = "{!v.Action.actionButton.Action_Label__c}"
+                recordId="{!v.recordId}" sObjectName="{!v.sObjectName}" ocallComponent="{!v.Action.actionButton.URL_Redirect__c}"
+                componentHeader="{!v.Action.actionButton.Component_Header__c}"></c:modalPopUp>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

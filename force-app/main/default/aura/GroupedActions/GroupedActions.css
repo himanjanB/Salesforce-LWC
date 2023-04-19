@@ -1,0 +1,4 @@
+.THIS .pointer .rotate .fa.fa-folder-open:hover{
+    cursor: pointer;
+    transition: 1s ease-out;
+}

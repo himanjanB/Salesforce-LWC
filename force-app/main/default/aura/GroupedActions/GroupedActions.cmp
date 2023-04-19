@@ -1,0 +1,20 @@
+<aura:component controller="CustomActionPanelController" 
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
+
+    <aura:attribute name = "flowType" type = "String" />
+    <aura:attribute name = "record" type = "sObject" />
+    <aura:dependency resource = "c:CustomActionTile" type = "COMPONENT" />
+    <aura:handler name = "passMethod" event = "c:ReloadData" action = "{!c.doInit}" />
+    <force:recordData aura:id = "recordLoader"
+                recordId = "{!v.recordId}"
+                fields = "LastModifiedDate"
+                targetFields = "{!v.record}"
+                recordUpdated = "{!c.doInit}"
+    />
+    
+    <div class="slds-card">
+        <div class="slds-grid slds-wrap" style="height: 100%;" >
+                {!v.body}
+        </div>
+    </div>
+</aura:component>

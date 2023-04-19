@@ -1,0 +1,41 @@
+<aura:component>
+    <aura:handler name = "change" value = "{!v.isModalOpen}" action = "{!c.doInit}" />
+    <aura:attribute name = "recordId" type = "String" />
+    <aura:attribute name = "sObjectName" type = "String" />
+    <aura:attribute name = "ocallComponent" type = "String" />
+    <aura:attribute name = "componentHeader" type = "String" />
+    <aura:attribute name = "isModalOpen" type = "Boolean" default = "false" />
+    <aura:attribute name = "actionLabel" type = "String" />
+    <aura:registerEvent name = "passMethod" type = "c:ReloadData" />
+
+    <aura:if isTrue="{!v.isModalOpen}">
+        <aura:html tag = "style">
+            .slds-modal__container {
+                width : 90% !important;
+                max-width : 200rem !important;
+            }
+            .scrollerSize {
+                height : 60% !important;
+            }
+            .popup {
+                background : white;
+            }
+        </aura:html>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                      onclick="{!c.closeMethodInAuraController}"
+                                      alternativeText="close"
+                                      variant="bare-inverse"
+                                      class="slds-modal__close" />
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{!v.componentHeader}</h2>
+                </header>
+                <div class="popup">
+                    {!v.body}
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>
